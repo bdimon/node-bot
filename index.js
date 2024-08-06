@@ -18,23 +18,31 @@ const start = () => {
         const chatId = msg.chat.id;
         if (text === '/start') {
             await bot.sendSticker(chatId, 'https://sl.combot.org/prog1/webp/5xf09f988e.webp');
+
             await bot.sendMessage(chatId, 'Please fill form to the bottom', {
-                // reply_markup: {
-                //     keyboard: [
-                //       [{text: 'Fill form'}, {text: 'Welcome'}, {text: 'Exit'},]
-                //     ]
-                // }
                 reply_markup: {
-                    inline_keyboard: [
-                      [{text: 'Fill form', web_app: {url: webAppUrl + '/form'}},]
+                    keyboard: [
+                      [{text: 'Please fill form', web_app: {url: webAppUrl + '/form'}}]
+                    ],
+                    keyboard: [
+                      [{text: 'Please Go!', web_app: {url: webAppUrl}}]
                     ]
                 }
-            })
+            });
+
+            await bot.sendMessage(chatId, 'Welcome to our shop!', {
+                reply_markup: {
+                    inline_keyboard: [
+                      [{text: 'Welcome to our shop!', web_app: {url: webAppUrl}},]
+                    ]
+                }
+            });
+
             // await bot.sendMessage(chatId, 'Welcome to Bot Store of Anna hand made!')
             // Для того, чтобы завершить задачу
             return bot.sendMessage(chatId, 'Welcome to Bot Store of Anna hand made!')
-
         }
+
         if (text === '/info') {
             // await bot.sendMessage(chatId, `Hello ${msg.from.first_name} ${msg.from.last_name}`)
             // Для того, чтобы завершить задачу
