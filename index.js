@@ -2,10 +2,10 @@ const TelegramApi = require('node-telegram-bot-api');
 // import '.env';
 
 const token = process.env.TOKEN_API;
-
+const webAppUrl = process.env.WEB_APP_URL;
 
 const bot = new TelegramApi(token, {polling: true});
-const webAppUrl = 'https://nodebot-pied.vercel.app/';
+
 
 // bot.setMyCommands([
 //     {command: '/start', description: 'Start of my bot'},
@@ -33,7 +33,7 @@ const start = () => {
             await bot.sendMessage(chatId, 'Welcome to our shop!', {
                 reply_markup: {
                     inline_keyboard: [
-                      [{text: 'Fill form!', web_app: {url: webAppUrl + '/form'}}, {text: 'Welcome to our shop!', web_app: {url: webAppUrl}}]
+                      [{text: 'Welcome to our shop!', web_app: {url: webAppUrl}}]
                     ]
                 }
             });
