@@ -82,7 +82,6 @@ app.post('/web-data', async(req, res) => {
 })
 
 
-app.listen(port, () => console.log('Server started sucsessfully')
-);
+app.listen(port, () => console.log('Server started sucsessfully'));
 
 start();
