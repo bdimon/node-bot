@@ -88,7 +88,7 @@ app.post('/web-data', async(req, res) => {
             type: 'article',
             queryId,
             title: 'Successful purchase',
-            input_message_content: {message_text: 'Congratulations on your successful purchase on $' + totalPrice}
+            input_message_content: {message_text: `Congratulations on your successful purchase for $ ${totalPrice}, ${products.map(item => item.title).join(', ')}`}
         })
         return res.status(200).json({})
     }catch (e){
@@ -104,7 +104,7 @@ app.post('/web-data', async(req, res) => {
 })
 
 
-app.listen(port, () => console.log('Server started on port ' + port)
+app.listen(port, () => console.log('Server started sucsessfully')
 );
 
 start();
