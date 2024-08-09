@@ -1,10 +1,16 @@
 const TelegramApi = require('node-telegram-bot-api');
-// import '.env';
+const express = require('express');
+const cors = require('cors');
 
 const token = process.env.TOKEN_API;
 const webAppUrl = process.env.WEB_APP_URL;
 
 const bot = new TelegramApi(token, {polling: true});
+
+const app = express();
+
+app.use(express.json());
+app.use(cors());
 
 
 // bot.setMyCommands([
@@ -74,5 +80,32 @@ const start = () => {
         // return bot.sendMessage(chatId, 'I don\'t understand you, sorry...');
     });
 }
+
+app.post('/web-data', async(req, res) => {
+    const{queryId, products, totalPrice} = req.body;
+    try{
+        await bot.answerWebAppQuery(queryId, {
+            type: 'article',
+            queryId,
+            title: 'Successful purchase',
+            input_message_content: {message_text: 'Congratulations on your successful purchase on $' + totalPrice}
+        })
+        return res.status(200).json({})
+    }catch (e){
+        console.log(e);
+        await bot.answerWebAppQuery(queryId, {
+            type: 'article',
+            queryId,
+            title: 'Failed to purchase the product',
+            input_message_content: {message_text: 'Failed to purchase the product'}
+        })
+        return res.status(500).json({})
+    }
+})
+
+
+const port = process.env.PORT;
+app.listen(port, () => console.log('Server started on port ' + port)
+);
 
 start();
