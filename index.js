@@ -4,7 +4,7 @@ const cors = require('cors');
 
 const token = process.env.TOKEN_API;
 const webAppUrl = process.env.WEB_APP_URL;
-
+const port = process.env.PORT;
 const bot = new TelegramApi(token, {polling: true});
 
 const app = express();
@@ -104,7 +104,6 @@ app.post('/web-data', async(req, res) => {
 })
 
 
-const port = process.env.PORT;
 app.listen(port, () => console.log('Server started on port ' + port)
 );
 
