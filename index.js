@@ -59,6 +59,10 @@ const start = () => {
     });
 }
 
+app.get('/', (req, res) => {
+    res.send('Express JS on Vercel')
+})
+
 app.post('/web-data', async(req, res) => {
     const{queryId, products, totalPrice} = req.body;
     try{
