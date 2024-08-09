@@ -3,8 +3,8 @@ const express = require('express');
 const cors = require('cors');
 
 const token = process.env.TOKEN_API;
-const webAppUrl = process.env.WEB_APP_URL;
-const port = process.env.PORT;
+const webAppUrl = 'https://nodebot-pied.vercel.app/';
+const port = process.env.PORT || 8000;
 console.log(port);
 
 const bot = new TelegramApi(token, {polling: true});
